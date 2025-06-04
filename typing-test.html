@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #343a40;
+    }
+
+    .page {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1rem;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+    }
+
+    h2 {
+        margin-bottom: 1.5rem;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background-color: #e9ecef;
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .results-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .results-table th, .results-table td {
+        border-bottom: 1px solid #dee2e6;
+        padding: 0.75rem;
+        text-align: left;
+    }
+
+    .results-table th {
+        background-color: #f1f3f5;
+    }
+    .results-table td {
+        background-color: #ffffff;
+    }
+    .results-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    .results-table tr:hover {
+        background-color: #e9ecef;
+    }
+    .results-table th, .results-table td {
+        font-size: 0.9rem;
+    }
+    .results-table th {
+        font-weight: bold;
+        color: #495057;
+    }
+    button {
+        background-color: #667eea;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #5a67d8;
+    }
+    .btn-reset {
+        background-color: #e2e8f0;
+        color: #4a5568;
+    }
+    .btn-reset:hover {
+        background-color: #cbd5e0;
+    }
+    .btn-start {
+        background-color: #48bb78;
+        color: white;
+    }
+    .btn-start:hover {
+        background-color: #38a169;
+    }
+</style>
+<body>
+    <!-- Typing Test Page -->
+        <div id="typing-test" class="page">
+            <div class="card">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #667eea;">Typing Test</h2>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <span class="stat-number" id="wpm">0</span>
+                        <span>WPM</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="accuracy">100</span>
+                        <span>% Accuracy</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="timer">60</span>
+                        <span>Seconds</span>
+                    </div>
+                </div>
+
+                <div class="typing-area">
+                    <div class="text-display" id="textDisplay">
+                        The quick brown fox jumps over the lazy dog. This pangram contains every letter of the alphabet and is commonly used for typing practice. It helps improve both speed and accuracy while ensuring you practice all letter combinations.
+                    </div>
+                    <textarea class="typing-input" id="typingInput" placeholder="Start typing here..." rows="4"></textarea>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="btn btn-start" onclick="startTest()">Start Test</button>
+                    <button class="btn btn-reset" onclick="resetTest()" style="margin-left: 1rem;">Reset</button>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
+<script>
+    // Typing Test JavaScript
+    let timer;
+    let timeLeft = 60; // 60 seconds
+    let isTesting = false;
+
+    function startTest() {
+        if (isTesting) return;
+        isTesting = true;
+        document.getElementById('typingInput').value = '';
+        document.getElementById('wpm').text;Content = '0';
+        document.getElementById('accuracy').textContent = '100';
+        document.getElementById('timer').textContent = timeLeft;
+        document.getElementById('typingInput').disabled = false;
+        document.getElementById('typingInput').focus();
+        document.getElementById('textDisplay').style.color = '#000';
+        timer = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                isTesting = false;
+                document.getElementById('typingInput').disabled = true;
+                document.getElementById('textDisplay').style.color = '#ff0000';
+                alert('Time is up! Your test has ended.');
+                return;
+            }
+            timeLeft--;
+            document.getElementById('timer').textContent = timeLeft;
+            calculateWPM();
+        }, 1000);
+        
+    }
+</script>

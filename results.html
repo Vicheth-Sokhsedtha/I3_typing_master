@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #343a40;
+    }
+
+    .page {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1rem;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+    }
+
+    h2 {
+        margin-bottom: 1.5rem;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background-color: #e9ecef;
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .results-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .results-table th, .results-table td {
+        border-bottom: 1px solid #dee2e6;
+        padding: 0.75rem;
+        text-align: left;
+    }
+
+    .results-table th {
+        background-color: #f1f3f5;
+    }
+</style>
+<body>
+    
+        <!-- Test Results Page -->
+        <div id="results" class="page">
+            <div class="card">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #667eea;">Your Test Results</h2>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <span class="stat-number">12</span>
+                        <span>Total Tests</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">65</span>
+                        <span>Best WPM</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">92</span>
+                        <span>Avg Accuracy</span>
+                    </div>
+                </div>
+
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>WPM</th>
+                            <th>Accuracy</th>
+                            <th>Duration</th>
+                            <th>Errors</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTableBody">
+                        <tr>
+                            <td>2025-06-04</td>
+                            <td>65</td>
+                            <td>94%</td>
+                            <td>60s</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>2025-06-03</td>
+                            <td>58</td>
+                            <td>89%</td>
+                            <td>60s</td>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>2025-06-02</td>
+                            <td>52</td>
+                            <td>91%</td>
+                            <td>60s</td>
+                            <td>15</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</body>
+</html>
+<script>
+    // Sample data for results
+    const results = [
+        { date: '2025-06-04', wpm: 65, accuracy: '94%', duration: '60s', errors: 12 },
+        { date: '2025-06-03', wpm: 58, accuracy: '89%', duration: '60s', errors: 18 },
+        { date: '2025-06-02', wpm: 52, accuracy: '91%', duration: '60s', errors: 15 }
+    ];
+
+    // Function to populate results table
+    function populateResultsTable() {
+        const tableBody = document.getElementById('resultsTableBody');
+        results.forEach(result => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${result.date}</td>
+                <td>${result.wpm}</td>
+                <td>${result.accuracy}</td>
+                <td>${result.duration}</td>
+                <td>${result.errors}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Call the function to populate the table
+    populateResultsTable();
+</script>
