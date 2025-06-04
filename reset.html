@@ -1,0 +1,190 @@
+<!-- RESET-PASSWORD.HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - Typing Test Master</title>
+    <link rel="stylesheet" href="reset.css">
+</head>
+<body>
+    <div class="reset-container">
+        <div class="reset-box">
+            <!-- Step 1: Email Input -->
+            <div class="step" id="step1" style="display: block;">
+                <div class="logo-section">
+                    <div class="logo">🔐</div>
+                    <h1>Reset Password</h1>
+                    <p>Enter your email address and we'll send you a secure link to reset your password</p>
+                </div>
+
+                <form id="emailForm" class="reset-form">
+                    <div class="alert" id="emailAlert" style="display: none;"></div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-container">
+                            <span class="input-icon">📧</span>
+                            <input type="email" id="email" name="email" placeholder="Enter your registered email" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="reset-btn" id="sendBtn">
+                        <span class="btn-text">Send Reset Link</span>
+                        <span class="btn-loader" style="display: none;">⏳</span>
+                    </button>
+                </form>
+
+                <div class="help-text">
+                    <div class="security-info">
+                        <div class="security-item">
+                            <span class="security-icon">🔒</span>
+                            <span>Secure & encrypted</span>
+                        </div>
+                        <div class="security-item">
+                            <span class="security-icon">⏱️</span>
+                            <span>Link expires in 15 minutes</span>
+                        </div>
+                        <div class="security-item">
+                            <span class="security-icon">📱</span>
+                            <span>Check your email & spam folder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Email Sent Confirmation -->
+            <div class="step" id="step2" style="display: none;">
+                <div class="success-section">
+                    <div class="success-icon">✉️</div>
+                    <h2>Check Your Email</h2>
+                    <p>We've sent a password reset link to:</p>
+                    <div class="email-display" id="sentEmail"></div>
+                    <p class="instruction">Click the link in your email to reset your password. The link will expire in 15 minutes.</p>
+                </div>
+
+                <div class="email-actions">
+                    <button class="resend-btn" id="resendBtn">
+                        <span class="btn-text">Resend Email</span>
+                        <span class="countdown" id="countdown" style="display: none;">(60s)</span>
+                    </button>
+                    <button class="change-email-btn" onclick="goToStep(1)">Use Different Email</button>
+                </div>
+
+                <div class="email-tips">
+                    <h4>Didn't receive the email?</h4>
+                    <ul>
+                        <li>Check your spam or junk folder</li>
+                        <li>Make sure you entered the correct email</li>
+                        <li>Wait a few minutes for delivery</li>
+                        <li>Try adding our domain to your safe senders</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 3: New Password Form -->
+            <div class="step" id="step3" style="display: none;">
+                <div class="logo-section">
+                    <div class="logo">🔑</div>
+                    <h1>Create New Password</h1>
+                    <p>Choose a strong password to secure your account</p>
+                </div>
+
+                <form id="passwordForm" class="reset-form">
+                    <div class="alert" id="passwordAlert" style="display: none;"></div>
+                    
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <div class="input-container">
+                            <span class="input-icon">🔐</span>
+                            <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" required>
+                            <button type="button" class="password-toggle" id="passwordToggle1">👁️</button>
+                        </div>
+                        <div class="password-strength" id="strengthMeter">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                            <span class="strength-text" id="strengthText">Password strength</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <div class="input-container">
+                            <span class="input-icon">🔐</span>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                            <button type="button" class="password-toggle" id="passwordToggle2">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="password-requirements">
+                        <h4>Password must contain:</h4>
+                        <div class="requirement" id="lengthReq">
+                            <span class="req-icon">⭕</span>
+                            <span>At least 8 characters</span>
+                        </div>
+                        <div class="requirement" id="upperReq">
+                            <span class="req-icon">⭕</span>
+                            <span>One uppercase letter (A-Z)</span>
+                        </div>
+                        <div class="requirement" id="lowerReq">
+                            <span class="req-icon">⭕</span>
+                            <span>One lowercase letter (a-z)</span>
+                        </div>
+                        <div class="requirement" id="numberReq">
+                            <span class="req-icon">⭕</span>
+                            <span>One number (0-9)</span>
+                        </div>
+                        <div class="requirement" id="specialReq">
+                            <span class="req-icon">⭕</span>
+                            <span>One special character (!@#$%^&*)</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="reset-btn" id="updateBtn">
+                        <span class="btn-text">Update Password</span>
+                        <span class="btn-loader" style="display: none;">⏳</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 4: Success -->
+            <div class="step" id="step4" style="display: none;">
+                <div class="success-section">
+                    <div class="success-icon animate-check">✅</div>
+                    <h2>Password Updated!</h2>
+                    <p>Your password has been successfully updated. You can now log in with your new password.</p>
+                </div>
+
+                <div class="final-actions">
+                    <button class="login-redirect-btn" onclick="redirectToLogin()">
+                        Go to Login
+                    </button>
+                    <a href="index.html" class="home-link">← Back to Home</a>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="nav-footer" id="navFooter">
+                <div class="nav-links">
+                    <a href="login.html" class="nav-link">← Back to Login</a>
+                    <a href="register.html" class="nav-link">Create Account</a>
+                    <a href="index.html" class="nav-link">Home</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background Animation -->
+        <div class="bg-animation">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+            <div class="floating-shape shape-5"></div>
+        </div>
+    </div>
+
+    <script src="reset.js"></script>
+</body>
+</html>
+
