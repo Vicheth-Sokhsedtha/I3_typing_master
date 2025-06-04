@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Typing Test Master</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">Typing Test Master</div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-btn">Home</a>
+                    <a href="register.html" class="nav-btn active">Register</a>
+                    <a href="login.html" class="nav-btn">Login</a>
+                    <a href="reset.html" class="nav-btn">Reset Password</a>
+                    <a href="typing-test.html" class="nav-btn">Typing Test</a>
+                    <a href="results.html" class="nav-btn">Results</a>
+                    <a href="about.html" class="nav-btn">About Us</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Register Page Content -->
+        <div class="page">
+            <h2 class="page-title">Create Your Account</h2>
+            <div class="form-container">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                        <span class="error-message" id="fullNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                        <span class="error-message" id="usernameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                        <span class="error-message" id="passwordError"></span>
+                        <div class="password-strength" id="passwordStrength"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            I agree to the <a href="#" class="terms-link">Terms and Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="form-button" id="submitBtn">Create Account</button>
+                </form>
+                <p class="form-footer">
+                    Already have an account? <a href="login.html" class="form-link">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>
